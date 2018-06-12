@@ -1,0 +1,30 @@
+
+                   <Image source={require('./pic/渐变图片背景.jpg')} style={styles.image}>
+                                   <Animated.View style ={{opacity: this.state.fadeAnim,transform: [{
+                                       //插参interpolate：用以返回对应参数
+                                       translateY: this.state.grassTransY.interpolate({
+                                               inputRange: [0, 1],
+                                               outputRange: [Dimensions.get('window').height/2.5,Dimensions.get('window').height/4.5]
+                                           })
+                                   }]}}>
+                                     <TouchableOpacity  onPress={this.testFun2}>
+
+                                         <Text style={styles.welcome}>
+                                             中成智控移动审批系统
+                                         </Text>
+                                     </TouchableOpacity>
+
+                                   </Animated.View>
+                                 </Image>
+
+
+[Object]
+0:Object
+height:1280
+mime:"image/png"
+path:"file:///storage/emulated/0/Pictures/Screenshots/Screenshot_2017-10-10-15-45-34.png"
+size:14835
+width:720
+__proto__:Object
+length:1
+__proto__:Array(0)

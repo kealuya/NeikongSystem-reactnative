@@ -1,0 +1,19 @@
+
+//login
+export const LOGIN_IN_INIT = 'LOGIN_IN_INIT';
+export const LOGIN_IN_DOING = 'LOGIN_IN_DOING';
+export const LOGIN_IN_DONE = 'LOGIN_IN_DONE';
+//disList
+export const DISPLAY_LIST_ALLCASE = 'DISPLAY_LIST_ALLCASE';
+export const DISPLAY_LIST_NOTCASE = 'DISPLAY_LIST_NOTCASE';
+export const DISPLAY_LIST_APPROVECASE = 'DISPLAY_LIST_APPROVECASE';
+export const DISPLAY_LIST_DOADING = 'DISPLAY_LIST_DOADING';
+//logout
+export const LOGIN_OUT_DOING = 'LOGIN_OUT_DOING';
+export const LOGIN_IN_ERROR = 'LOGIN_IN_ERROR';
+export const LOGIN_OUT_DONE = 'LOGIN_OUT_DONE';
+//detail
+export const DISPLAY_DETAIL_BY_YWID = 'DISPLAY_DETAIL_BY_YWID';
+export const DISPLAY_STEP_DETAIL = 'DISPLAY_STEP_DETAIL';
+//nothing
+export const NOTHING = 'NOTHING';

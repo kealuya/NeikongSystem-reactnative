@@ -1,0 +1,43 @@
+   <ScrollView contentContainerStyle={[styles.container]}  >
+                <Text style={{fontSize:40}}>业务ID：{this.props.ywid}</Text>
+                <Text style={{fontSize:40}}>User：{this.props.user.username}</Text>
+                {this.state.detailData.map((val,i)=>{
+                    return <Text key={i} style={{fontSize:15}}>详细内容：{val}</Text>
+                })}
+
+                <Text style={{fontSize:20}}>StepID：{this.state.stepid}</Text>
+
+                <View style={styles.buttonView}>
+                    <Button
+                        onPress={this.getdate}
+                        title="日期"
+                        color="#841584"
+                    />
+                </View>
+
+                <View style={styles.buttonView}>
+                    <Text>
+                        选择日期: {this.state.titleText }
+                    </Text>
+                </View>
+
+                <DatePickerTool ref="datePickerTool" />
+
+                <Button
+                    onPress={this.actionSheet}
+                    title="图片附件"
+                    color="#841584"
+                />
+
+                <ImagePickerTool ref={o=>this.imagePickerTool = o}/>
+
+                <View style={[{margin:20,height:3,width:Util.windowSize.width-12,backgroundColor:'gray'}]}>
+
+                </View>
+                <Button
+                    onPress={this.uploadImage}
+                    title="确认提交"
+                    color="#841584"
+                />
+                {this.state.waiting?Util.loading:null}
+            </ScrollView>
