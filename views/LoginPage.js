@@ -29,13 +29,18 @@ class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            //动画相关初始值设定，透明度，y轴动画
             fadeAnim: new Animated.Value(0), //设置初始值
             grassTransY : new Animated.Value(0),
             loginWindowOpacity : new Animated.Value(0),
             autoLoginFlg: false,
         };
-        //通过reactNavigation直接引用的页面
+        //通过reactNavigation直接引用的页面**通过reactnavigation打开的页面都会在props中带上navigation属性
+        //用来控制、接受导航参数
         this.propNavigate = this.props.navigation;
+        //bind：因为Util.displayToastMsg返回的是一个function，这个func内引用了this，所以需要
+        //把this绑定到这个方法中。不能用()=>这个，这个是绑定当前环境的上下文的this，有限制。
+        //
         this.displayToastMsg = Util.displayToastMsg.bind(this);
     }
     render() {
@@ -63,9 +68,12 @@ class LoginPage extends Component {
                 </Image>
                 {Util.displayToastError()}
                 {Util.displayToastWarning()}
+                {
+                    //判断props的状态，通过redux，如果正在doing，就显示菊花，不然就返回null显示空
+                }
                 {this.props.status == types.LOGIN_IN_DOING?Util.loading:null}
             </View>
-        );
+        );//jsx语法中，{}包裹的东西是可以执行的部分，比如三元式需要写到大括号中。
     }
 
     componentWillMount() {
@@ -79,12 +87,15 @@ class LoginPage extends Component {
             this.propNavigate.navigate('TabDoNavigatorPage');
             return false;
         }
-
+        //是否刷新
         return true;
     }
 
 
     componentDidMount() {
+        //react-navigation官网上有关于登录验证的记载
+        //可以参考记录
+
 
         //登录状态check
         // global.storage.load({
@@ -107,6 +118,11 @@ class LoginPage extends Component {
         //         );
         //     }
         // }).then(() => {
+
+        //Animated一般定义在DidMount方法中，
+        //sequence：按顺序执行，所有Animated包含的组件都会以动画的形式显示
+        //比如Title文字悄悄出现的意思是：opacity从0慢慢变成1.
+        //easing：动画的运动形式，比如贝塞尔曲线，或者模拟皮球自由落地时的运动轨迹
             Animated.sequence([
                 //Title文字悄悄出现
                 Animated.timing(
@@ -136,6 +152,7 @@ class LoginPage extends Component {
                     }
                 )
             ]).start(()=>{
+                //动画完成之后的回调方法
                 // if (this.state.autoLoginFlg){
                 //      this.webGetReq(this.state.userInfo);
                 // }

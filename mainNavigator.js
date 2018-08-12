@@ -16,10 +16,12 @@ import VersionControl from './views/VersionControl';
 import LoginPage from './views/LoginPage';
 import ApproveList from './views/approveList';
 import DetailItemWithDrawer from './views/DetailItemWithDrawer';
+//提前引入本页面中可能出现的图片
 const listIcon = require('./pic/listIcon.png');
 const approveIcon = require('./pic/approveIcon.png');
 const buildIcon = require('./pic/buildIcon.png');
 const systemIcon = require('./pic/systemIcon.png');
+//react-navigation插件 tabnav
 const TabDoNavigator = TabNavigator({
     Main: {
         screen: ApproveList,
@@ -92,9 +94,16 @@ const TabDoNavigator = TabNavigator({
 
 export default  StackDoNavigator = StackNavigator({
     //RouteConfigs
+    /*
+    HomePage是key，跳转页面需要的String名称
+    screen：LoginPage是引用页面的对象
+     */
     HomePage: {
         screen: LoginPage,
+        //这部分的navigation可以每一个页面设置一个，也可以总体设置一个（就是StackNavigatorConfig部分）
+        //也可以把自己的导航属性设置在页面自己里面，多种方式。如果想保证统一，应该设置到下面Config部分.
         navigationOptions: {
+            //因为该页面属于StackNavigator，如果header不为空，可能会有title部分会有link
             header:null,
         }
     },
@@ -113,12 +122,14 @@ export default  StackDoNavigator = StackNavigator({
     //StackNavigatorConfig
     headerMode:'screen',
     transitionConfig:()=>({
+        //react-navigation页面转换动画设置，横向动画
         screenInterpolator:CardStackStyleInterpolator.forHorizontal, })
 });
 const styles = StyleSheet.create({
     icon: {
         width: 35,
         height: 35,
+        //tab下的图标显示方式
         resizeMode:'stretch',//stretch,cover,contain,center
     },
 });

@@ -28,6 +28,8 @@ var Util = {
             <Toast ref="toastError" style={{backgroundColor:'red'}} position={'bottom'}/>
         )
     },
+    //因为没有this问题，所以用什么生命func都可以
+    //return多组件的时候，一般会用括号把他们包裹起来
     displayToastWarning:()=>{
         return(
             <Toast ref="toastWarning" position={'bottom'}/>
@@ -36,6 +38,9 @@ var Util = {
     displayToastMsg:function(text, toastStyle) {
         switch(toastStyle) {
             case 'error':
+                //任何一个组件都可以生命ref，说明该component可以被当前页面的其他代码引用
+                //可以拿到该组件的应用对象，并调用其中的方法。
+                //调用LoginPage页面中的Toast组件的方法
                 this.refs.toastError.show(text, DURATION.LENGTH_LONG);
                 break;
             case 'warning':

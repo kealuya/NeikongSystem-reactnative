@@ -55,6 +55,10 @@ export const doLogin = (username,password) => {
 
 // 登录Error
 export function loginError(msg,type) {
+    //其实action类里面也是返回纯净的json，
+    //1，为了传参数方便，参数主要有type：状态，payload：带参
+    //2，用action方法后，可以通过thunk改造action，使之可以传入action函数
+    //doLogin返回了一个func，其中去网络请求确认登录信息，然后成功的话再返回action
     return {
         type: types.LOGIN_IN_ERROR,
         payload:{
